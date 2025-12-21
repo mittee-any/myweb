@@ -1,0 +1,34 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}{{ post.title }} - 我的博客{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <article>
+            <h1 class="mb-3">{{ post.title }}</h1>
+            <p class="post-meta mb-4">
+                由 <strong>{{ post.owner.username }}</strong> 发表于
+                {{ post.date_added|date:"Y年m月d日 H:i" }}
+            </p>
+
+            {% if user == post.owner %}
+            <div class="mb-3">
+                <a href="{% url 'blogs:edit_post' post.id %}" class="btn btn-sm btn-warning">编辑</a>
+                <a href="{% url 'blogs:delete_post' post.id %}" class="btn btn-sm btn-danger">删除</a>
+            </div>
+            {% endif %}
+
+            <div class="card">
+                <div class="card-body">
+                    {{ post.text|linebreaks }}
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="{% url 'blogs:index' %}" class="btn btn-secondary">返回主页</a>
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}

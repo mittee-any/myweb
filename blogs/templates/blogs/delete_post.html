@@ -1,0 +1,23 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}删除文章 - 我的博客{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6 mx-auto">
+        <h1 class="mb-4">删除文章</h1>
+
+        <div class="alert alert-warning">
+            <h4>确定要删除这篇文章吗？</h4>
+            <p><strong>{{ post.title }}</strong></p>
+            <p class="mb-0">此操作不可撤销！</p>
+        </div>
+
+        <form method="post" action="{% url 'blogs:delete_post' post.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">确认删除</button>
+            <a href="{% url 'blogs:post_detail' post.id %}" class="btn btn-secondary">取消</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
