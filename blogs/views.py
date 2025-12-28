@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from .models import BlogPost
-from .forms import BlogPostForm
+from .forms import NewPostForm,EditPostForm
 
 
 def index(request):
@@ -27,10 +27,10 @@ def new_post(request):
     """创建新文章"""
     if request.method != 'POST':
         # 显示空表单
-        form = BlogPostForm()
+        form = NewPostForm()
     else:
         # 处理提交的数据
-        form = BlogPostForm(data=request.POST)
+        form = NewPostForm(data=request.POST)
         if form.is_valid():
             new_post = form.save(commit=False)
             new_post.owner = request.user
@@ -52,10 +52,10 @@ def edit_post(request, post_id):
 
     if request.method != 'POST':
         # 显示包含当前文章内容的表单
-        form = BlogPostForm(instance=post)
+        form = EditPostForm(instance=post)
     else:
         # 处理提交的数据
-        form = BlogPostForm(instance=post, data=request.POST)
+        form = EditPostForm(instance=post, data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('blogs:post_detail', post_id=post.id)
