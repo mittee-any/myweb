@@ -73,7 +73,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# 语言和时区（保持你的配置）
+# 语言和时区
 LANGUAGE_CODE = 'zh-hans'
 TIME_ZONE = 'Asia/Shanghai'
 USE_I18N = True
@@ -85,6 +85,6 @@ STATIC_URL = 'static/'
 # 解决主键警告：设置默认主键类型
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# 登录/登出重定向（保持你的配置）
+# 登录/登出重定向
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
